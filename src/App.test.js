@@ -1,16 +1,13 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import Enzyme, { shallow } from 'enzyme';
+import EnzymeAdapter from 'enzyme-adapter-react-16';
 import App from './App'
 
-/** 
- This course is not designed to teach Test Driven Development. 
- Feel free to use this file to test your application, but it 
- is not required.
-**/
+Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 it('renders without crashing', () => {
-  const div = document.createElement('div')
-  ReactDOM.render(<App />, div)
+  const wrapper = shallow(<App />)
+  expect(wrapper.find('[data-test="component-app"]').length).toBe(1)
 })
 
 

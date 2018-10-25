@@ -1,10 +1,11 @@
 import React from 'react';
+import Shelf from './Shelf'
 
-const Book = (props) => {
+const Book = ({backgroundImage, bookTitle, bookAuthors}) => {
   const divStyle = {
     width: 128,
-    height: 193,
-    backgroundImage: `url(${props.backgroundImage})`
+    height: 188,
+    backgroundImage: `url(${backgroundImage})`
   };
   return (
     <div>
@@ -14,18 +15,10 @@ const Book = (props) => {
           <div className="book-cover" style={divStyle}>
 
           </div>
-          <div className="book-shelf-changer">
-            <select>
-              <option value="move" disabled>Move to...</option>
-              <option value="currentlyReading">Currently Reading</option>
-              <option value="wantToRead">Want to Read</option>
-              <option value="read">Read</option>
-              <option value="none">None</option>
-            </select>
-          </div>
+          <Shelf />
         </div>
-        <div className="book-title">{props.bookTitle}</div>
-        <div className="book-authors">{props.bookAuthors}</div>
+        <div className="book-title">{bookTitle}</div>
+        <div className="book-authors">{bookAuthors}</div>
       </div>
 
     </div>

@@ -5,32 +5,31 @@ import Shelf from './Shelf'
 
 class Book extends Component {
   static propTypes = {
-    title: PropTypes.string.isRequired,
-    authors: PropTypes.array.isRequired
+    books: PropTypes.array.isRequired,
   }
-
-  state = {
-    title: '',
-  }
-
-  render() {
-    const { book } = this.state
+  render(){
     const divStyle = {
       width: 128,
       height: 188,
-      backgroundImage: `url('https://www.google.com')`
-    };
+      backgroundImage: `url(${'backgroundImage'})`
+    }
     return (
       <div>
         <div className="book">
           <div className="book-top">
             <div className="book-cover" style={divStyle}>
-              {console.log(book)}
             </div>
             <Shelf />
           </div>
-          <div className="book-title">{'title'}</div>
-          <div className="book-authors">{'authors'}</div>
+            {this.props.books[0]
+              ? <div className="book-title">{this.props.books[0].title}</div>
+              : console.log('Oh!!!')}
+            {this.props.books[0]
+              ? <div className="book-authors">{this.props.books[0].authors}</div>
+              : console.log('Oh!!!')}
+            {this.props.books[0]
+              ? console.log(this.props.books[0])
+              : console.log('Oh!!!')}
         </div>
 
       </div>

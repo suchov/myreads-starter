@@ -50,7 +50,9 @@ class ListBooks extends Component {
                           : console.log('Oh!!!')}
                       </li>
                       <li>
-
+                        {this.props.books[1]
+                          ? <Book book={this.props.books[1]} />
+                          : console.log('Oh!!!')}
                       </li>
                     </ol>
                   </div>
@@ -60,10 +62,14 @@ class ListBooks extends Component {
                   <div className="bookshelf-books">
                     <ol className="books-grid">
                       <li>
-
+                        {this.props.books[2]
+                          ? <Book book={this.props.books[2]} />
+                          : console.log('Oh!!!')}
                       </li>
                       <li>
-
+                        {this.props.books[3]
+                          ? <Book book={this.props.books[3]} />
+                          : console.log('Oh!!!')}
                       </li>
                     </ol>
                   </div>

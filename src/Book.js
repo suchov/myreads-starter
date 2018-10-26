@@ -5,14 +5,16 @@ import Shelf from './Shelf'
 
 class Book extends Component {
   static propTypes = {
-    books: PropTypes.array.isRequired,
+    book: PropTypes.object.isRequired,
   }
   render(){
+    const {book} = this.props
     const divStyle = {
       width: 128,
       height: 188,
-      backgroundImage: `url(${'backgroundImage'})`
+      backgroundImage: `url(${book.imageLinks.smallThumbnail})`
     }
+
     return (
       <div>
         <div className="book">
@@ -21,17 +23,9 @@ class Book extends Component {
             </div>
             <Shelf />
           </div>
-            {this.props.books[0]
-              ? <div className="book-title">{this.props.books[0].title}</div>
-              : console.log('Oh!!!')}
-            {this.props.books[0]
-              ? <div className="book-authors">{this.props.books[0].authors}</div>
-              : console.log('Oh!!!')}
-            {this.props.books[0]
-              ? console.log(this.props.books[0])
-              : console.log('Oh!!!')}
+            <div className="book-title">{book.title}</div>
+            <div className="book-authors">{book.authors}</div>
         </div>
-
       </div>
     );
   }

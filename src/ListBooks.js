@@ -1,7 +1,14 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Book from './Book';
 
 class ListBooks extends Component {
+  static propTypes = {
+    books: PropTypes.array.isRequired,
+  }
+  state = {
+    showSearchPage: false,
+  }
   render() {
     return (
       <div className="app" data-test="component-app">
@@ -38,7 +45,9 @@ class ListBooks extends Component {
                   <div className="bookshelf-books">
                     <ol className="books-grid">
                       <li>
-                        <Book books={this.props.books} />
+                        {this.props.books[0]
+                          ? <Book book={this.props.books[0]} />
+                          : console.log('Oh!!!')}
                       </li>
                       <li>
 

@@ -1,12 +1,21 @@
-import React from 'react';
-// import * as BooksAPI from './BooksAPI';
+import React, {Component} from 'react';
+import * as BooksAPI from './BooksAPI';
 import './App.css';
 import Book from './Book'
-import {books} from './books';
 
-class BooksApp extends React.Component {
+class BooksApp extends Component {
   state = {
-    showSearchPage: false
+    showSearchPage: false,
+    books: []
+  }
+  //get the array of the books from the API
+  componentDidMount() {
+    BooksAPI.getAll()
+      .then((books) => {
+        this.setState(() => ({
+          books
+        }))
+      })
   }
 
   render() {
@@ -45,10 +54,10 @@ class BooksApp extends React.Component {
                   <div className="bookshelf-books">
                     <ol className="books-grid">
                       <li>
-                        <Book id={books[0].id} backgroundImage={books[0].backgroundImage} bookTitle={books[0].bookTitle} bookAuthors={books[0].bookAuthors} />
+                        <Book book={this.state.books[0]} />
                       </li>
                       <li>
-                        <Book id={books[1].id} backgroundImage={books[1].backgroundImage} bookTitle={books[1].bookTitle} bookAuthors={books[1].bookAuthors}/>
+
                       </li>
                     </ol>
                   </div>
@@ -58,10 +67,10 @@ class BooksApp extends React.Component {
                   <div className="bookshelf-books">
                     <ol className="books-grid">
                       <li>
-                        <Book id={books[2].id} backgroundImage={books[2].backgroundImage} bookTitle={books[2].bookTitle} bookAuthors={books[2].bookAuthors}/>
+
                       </li>
                       <li>
-                        <Book id={books[3].id} backgroundImage={books[3].backgroundImage} bookTitle={books[3].bookTitle} bookAuthors={books[3].bookAuthors}/>
+
                       </li>
                     </ol>
                   </div>
@@ -71,13 +80,13 @@ class BooksApp extends React.Component {
                   <div className="bookshelf-books">
                     <ol className="books-grid">
                       <li>
-                        <Book id={books[4].id} backgroundImage={books[4].backgroundImage} bookTitle={books[4].bookTitle} bookAuthors={books[4].bookAuthors}/>
+
                       </li>
                       <li>
-                        <Book id={books[5].id} backgroundImage={books[5].backgroundImage} bookTitle={books[5].bookTitle} bookAuthors={books[5].bookAuthors}/>
+
                       </li>
                       <li>
-                        <Book id={books[6].id} backgroundImage={books[6].backgroundImage} bookTitle={books[6].bookTitle} bookAuthors={books[6].bookAuthors}/>
+
                       </li>
                     </ol>
                   </div>

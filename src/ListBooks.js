@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import Book from './Book';
 
 class ListBooks extends Component {
+  state = {
+    showSearchPage: this.props.showSearchPage,
+  }
   static propTypes = {
     books: PropTypes.array.isRequired,
   }
@@ -12,7 +15,7 @@ class ListBooks extends Component {
     const currentlyReading = this.props.books.filter(book => book.shelf === 'currentlyReading');
     return (
       <div className="app" data-test="component-app">
-        {this.props.showSearchPage ? (
+        {this.state.showSearchPage ? (
           <div className="search-books">
             <div className="search-books-bar">
               <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>

@@ -23,6 +23,7 @@ class BooksApp extends Component {
     return (
       <ListBooks
         books={this.state.books}
+        showSearchPage={this.state.showSearchPage}
         />
     )
   }

@@ -13,6 +13,7 @@ class ListBooks extends Component {
     const read = this.props.books.filter(book => book.shelf === 'read');
     const wantToRead = this.props.books.filter(book => book.shelf === 'wantToRead');
     const currentlyReading = this.props.books.filter(book => book.shelf === 'currentlyReading');
+
     return (
       <div className="app" data-test="component-app">
         {this.state.showSearchPage ? (
@@ -33,7 +34,14 @@ class ListBooks extends Component {
               </div>
             </div>
             <div className="search-books-results">
-              <ol className="books-grid"></ol>
+              <ol className="books-grid">
+                {/* this is where the search should shows up */}
+                {wantToRead.map((book) => (
+                  <li key={book.id}>
+                    <Book book={book}/>
+                  </li>
+                ))}
+              </ol>
             </div>
           </div>
         ) : (
@@ -59,13 +67,11 @@ class ListBooks extends Component {
                   <h2 className="bookshelf-title">Want to Read</h2>
                   <div className="bookshelf-books">
                     <ol className="books-grid">
-                      <ol className="books-grid">
-                        {wantToRead.map((book) => (
-                          <li key={book.id}>
-                            <Book book={book}/>
-                          </li>
-                        ))}
-                      </ol>
+                      {wantToRead.map((book) => (
+                        <li key={book.id}>
+                          <Book book={book}/>
+                        </li>
+                      ))}
                     </ol>
                   </div>
                 </div>

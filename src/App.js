@@ -7,7 +7,6 @@ class BooksApp extends Component {
   state = {
     books: [],
     showSearchPage: false,
-    searchField: ''
   }
   //get the array of the books from the API
   componentDidMount() {
@@ -19,13 +18,18 @@ class BooksApp extends Component {
       })
   }
 
+
   render() {
-    return (
-      <ListBooks
-        books={this.state.books}
-        showSearchPage={this.state.showSearchPage}
-        />
-    )
+    if (this.state.books.length === 0) {
+      return <h2>Loading...</h2>
+    } else {
+      return (
+        <ListBooks
+          books={this.state.books}
+          showSearchPage={this.state.showSearchPage}
+          />
+      )
+    }
   }
 }
 

@@ -5,7 +5,9 @@ import ListBooks from './ListBooks';
 
 class BooksApp extends Component {
   state = {
-    books: []
+    books: [],
+    showSearchPage: false,
+    searchField: ''
   }
   //get the array of the books from the API
   componentDidMount() {

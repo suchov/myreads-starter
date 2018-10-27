@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Shelf from './Shelf'
+import MoveShelf from './MoveShelf'
 
 
 class Book extends Component {
@@ -21,7 +21,7 @@ class Book extends Component {
           <div className="book-top">
             <div className="book-cover" style={divStyle}>
             </div>
-            <Shelf />
+            <MoveShelf />
           </div>
             <div className="book-title">{book.title}</div>
             <div className="book-authors">{book.authors}</div>

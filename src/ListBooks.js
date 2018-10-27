@@ -6,10 +6,10 @@ class ListBooks extends Component {
   static propTypes = {
     books: PropTypes.array.isRequired,
   }
-  state = {
-    showSearchPage: false,
-  }
   render() {
+    const read = this.props.books.filter(book => book.shelf === 'read');
+    const wantToRead = this.props.books.filter(book => book.shelf === 'wantToRead');
+    const currentlyReading = this.props.books.filter(book => book.shelf === 'currentlyReading');
     return (
       <div className="app" data-test="component-app">
         {this.props.showSearchPage ? (
@@ -44,16 +44,11 @@ class ListBooks extends Component {
                   <h2 className="bookshelf-title">Currently Reading</h2>
                   <div className="bookshelf-books">
                     <ol className="books-grid">
-                      <li>
-                        {this.props.books[0]
-                          ? <Book book={this.props.books[0]} />
-                          : console.log('Oh!!!')}
-                      </li>
-                      <li>
-                        {this.props.books[1]
-                          ? <Book book={this.props.books[1]} />
-                          : console.log('Oh!!!')}
-                      </li>
+                      {currentlyReading.map((book) => (
+                        <li key={book.id}>
+                          <Book book={book} />
+                        </li>
+                      ))}
                     </ol>
                   </div>
                 </div>
@@ -61,16 +56,13 @@ class ListBooks extends Component {
                   <h2 className="bookshelf-title">Want to Read</h2>
                   <div className="bookshelf-books">
                     <ol className="books-grid">
-                      <li>
-                        {this.props.books[2]
-                          ? <Book book={this.props.books[2]} />
-                          : console.log('Oh!!!')}
-                      </li>
-                      <li>
-                        {this.props.books[3]
-                          ? <Book book={this.props.books[3]} />
-                          : console.log('Oh!!!')}
-                      </li>
+                      <ol className="books-grid">
+                        {wantToRead.map((book) => (
+                          <li key={book.id}>
+                            <Book book={book}/>
+                          </li>
+                        ))}
+                      </ol>
                     </ol>
                   </div>
                 </div>
@@ -78,15 +70,11 @@ class ListBooks extends Component {
                   <h2 className="bookshelf-title">Read</h2>
                   <div className="bookshelf-books">
                     <ol className="books-grid">
-                      <li>
-
-                      </li>
-                      <li>
-
-                      </li>
-                      <li>
-
-                      </li>
+                      {read.map((book) => (
+                        <li key={book.id}>
+                          <Book book={book} />
+                        </li>
+                      ))}
                     </ol>
                   </div>
                 </div>

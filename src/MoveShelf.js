@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Shelf = (props) => {
+const MoveShelf = (props) => {
     return (
       <div className="book-shelf-changer">
         <select>
@@ -14,4 +14,4 @@ const Shelf = (props) => {
     )
 }
 
-export default Shelf;
+export default MoveShelf;

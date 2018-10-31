@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import * as BooksAPI from './BooksAPI';
 
-class Dropdown extends React.Component {
+class Dropdown extends Component {
   static propTypes = {
     book: PropTypes.object.isRequired,
     shelf: PropTypes.string.isRequired

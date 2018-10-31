@@ -2,11 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as BooksAPI from './BooksAPI';
 
-const MoveShelf = (props) => {
+class MoveShelf extends React.Component {
+  static propTypes = {
+    book: PropTypes.object.isRequired,
+    shelf: PropTypes.string.isRequired
+  }
+    handleChange = (selected) =>{
+      BooksAPI.update(this.props.book, selected);
+    }
+  render() {
     return (
       <div className="book-shelf-changer">
-        {console.log('!!!!!!' + props.shelf)}
-        <select value={props.shelf || 'none'} onChange={(event) => (console.log(event.target.value))}>
+        <select value={this.props.shelf || 'none'} onChange={event => this.handleChange(event.target.value)}>
           <option value="move" disabled>Move to...</option>
           <option value="currentlyReading">Currently Reading</option>
           <option value="wantToRead">Want to Read</option>
@@ -15,10 +22,7 @@ const MoveShelf = (props) => {
         </select>
       </div>
     )
-}
-MoveShelf.propTypes = {
-  book: PropTypes.object.isRequired,
-  shelf: PropTypes.string.isRequired
+  }
 }
 
 export default MoveShelf;

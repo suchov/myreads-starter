@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import * as BooksAPI from './BooksAPI';
 import BookShelf from './BookShelf';
 import SearchBooks from './SearchBooks';

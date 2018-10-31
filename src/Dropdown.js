@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as BooksAPI from './BooksAPI';
 
-class MoveShelf extends React.Component {
+class Dropdown extends React.Component {
   static propTypes = {
     book: PropTypes.object.isRequired,
     shelf: PropTypes.string.isRequired
@@ -25,4 +25,4 @@ class MoveShelf extends React.Component {
   }
 }
 
-export default MoveShelf;
+export default Dropdown;

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import MoveShelf from './MoveShelf'
+import Dropdown from './Dropdown'
 
 
 class Book extends Component {
@@ -21,7 +21,7 @@ class Book extends Component {
           <div className="book-top">
             <div className="book-cover" style={divStyle}>
             </div>
-            <MoveShelf book={this.props.book} shelf={this.props.book.shelf}/>
+            <Dropdown book={this.props.book} shelf={this.props.book.shelf}/>
           </div>
             <div className="book-title">{book.title}</div>
             <div className="book-authors">{book.authors && book.authors.join(', ')}</div>

@@ -12,7 +12,7 @@ class Dropdown extends Component {
   render() {
     return (
       <div className="book-shelf-changer">
-        <select value={this.props.shelf || 'none'} onChange={event => this.handleChange(event.target.value)}>
+        <select value={this.props.book.shelf || 'none'} onChange={event => this.handleChange(event.target.value)}>
           <option value="move" disabled>Move to...</option>
           <option value="currentlyReading">Currently Reading</option>
           <option value="wantToRead">Want to Read</option>

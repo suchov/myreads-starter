@@ -21,7 +21,7 @@ class Book extends Component {
           <div className="book-top">
             <div className="book-cover" style={divStyle}>
             </div>
-            <Dropdown book={book} shelf={shelf}/>
+            <Dropdown book={book}/>
           </div>
             <div className="book-title">{book.title}</div>
             <div className="book-authors">{book.authors && book.authors.join(', ')}</div>

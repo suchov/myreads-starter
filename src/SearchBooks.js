@@ -39,7 +39,7 @@ class SearchBooks extends Component {
             {console.log(searchFilter)}
             {Array.isArray(books) > 0 && (searchFilter.map((book) => (
               <li key={book.id}>
-                <Book book={book} shelf={'none'}/>
+                <Book book={book}/>
               </li>
             )))}
           </ol>

@@ -1,35 +1,17 @@
 import React, {Component} from 'react';
-import * as BooksAPI from './BooksAPI';
 import './App.css';
 import ListBooks from './ListBooks';
+import SearchBooks from './SearchBooks';
+import {Route} from 'react-router-dom'
 
 class BooksApp extends Component {
-  state = {
-    books: [],
-    showSearchPage: false,
-  }
-  //get the array of the books from the API
-  componentDidMount() {
-    BooksAPI.getAll()
-      .then((books) => {
-        this.setState(() => ({
-          books
-        }))
-      })
-  }
-
-
   render() {
-    if (this.state.books.length === 0) {
-      return <h2>Loading...</h2>
-    } else {
-      return (
-        <ListBooks
-          books={this.state.books}
-          showSearchPage={this.state.showSearchPage}
-          />
-      )
-    }
+    return (
+      <div className="app" data-test="component-app">
+        <Route exact path='/' component={ListBooks}/>
+        <Route path='/search' component={SearchBooks}/>
+      </div>
+    )
   }
 }
 

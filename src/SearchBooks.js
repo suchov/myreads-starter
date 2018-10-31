@@ -2,14 +2,23 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Book from './Book';
 import * as BooksAPI from './BooksAPI';
+import {Link} from 'react-router-dom';
 
 class SearchBooks extends Component {
   state = {
-    searchQuery: ''
+    searchQuery: '',
+    books: []
   }
-  static propTypes = {
-    books: PropTypes.array.isRequired,
+
+  componentDidMount() {
+    BooksAPI.getAll()
+      .then((books) => {
+        this.setState(() => ({
+          books
+        }))
+      })
   }
+
   handleChange = (searchQuery) => {
     this.setState(() => ({
       searchQuery: searchQuery.trim()
@@ -18,7 +27,7 @@ class SearchBooks extends Component {
 
   render() {
     const {searchQuery} = this.state;
-    const {books} = this.props;
+    const {books} = this.state;
 
     const searchFilter = searchQuery === ''
       ? books
@@ -27,14 +36,13 @@ class SearchBooks extends Component {
     return (
       <div className="search-books">
         <div className="search-books-bar">
-          <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
+          <Link to={'/'} className="close-search">Close</Link>
           <div className="search-books-input-wrapper">
             <input type="text" placeholder="Search by title or author" value={searchQuery} onChange={(event) => this.handleChange(event.target.value)}/>
           </div>
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {/* this is where the search should shows up */}
             {searchFilter.map((book) => (
               <li key={book.id}>
                 <Book book={book}/>

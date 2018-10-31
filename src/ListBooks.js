@@ -5,14 +5,28 @@ import Book from './Book';
 class ListBooks extends Component {
   state = {
     showSearchPage: this.props.showSearchPage,
+    searchQuery: ''
   }
   static propTypes = {
     books: PropTypes.array.isRequired,
   }
+  handleChange = (searchQuery) => {
+    this.setState(() => ({
+      searchQuery: searchQuery.trim()
+    }))
+  }
   render() {
-    const read = this.props.books.filter(book => book.shelf === 'read');
-    const wantToRead = this.props.books.filter(book => book.shelf === 'wantToRead');
-    const currentlyReading = this.props.books.filter(book => book.shelf === 'currentlyReading');
+    const {searchQuery} = this.state;
+    const {books} = this.props;
+    const read = books.filter(book => book.shelf === 'read');
+    const wantToRead = books.filter(book => book.shelf === 'wantToRead');
+    const currentlyReading = books.filter(book => book.shelf === 'currentlyReading');
+
+    const searchFilter = searchQuery === ''
+      ? books
+      : books.filter((c) => (
+        c.title.toLowerCase().includes(searchQuery.toLowerCase())
+      ))
 
     return (
       <div className="app" data-test="component-app">
@@ -29,14 +43,14 @@ class ListBooks extends Component {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
-                <input type="text" placeholder="Search by title or author"/>
+                <input type="text" placeholder="Search by title or author" value={searchQuery} onChange={(event) => this.handleChange(event.target.value)}/>
 
               </div>
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
                 {/* this is where the search should shows up */}
-                {wantToRead.map((book) => (
+                {searchFilter.map((book) => (
                   <li key={book.id}>
                     <Book book={book}/>
                   </li>

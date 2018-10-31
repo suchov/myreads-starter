@@ -21,10 +21,10 @@ class Book extends Component {
           <div className="book-top">
             <div className="book-cover" style={divStyle}>
             </div>
-            <MoveShelf />
+            <MoveShelf book={this.props.book} shelf={this.props.book.shelf}/>
           </div>
             <div className="book-title">{book.title}</div>
-            <div className="book-authors">{book.authors}</div>
+            <div className="book-authors">{book.authors && book.authors.join(', ')}</div>
         </div>
       </div>
     );

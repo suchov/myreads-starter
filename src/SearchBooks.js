@@ -5,24 +5,18 @@ import {Link} from 'react-router-dom';
 
 class SearchBooks extends Component {
   state = {
-    searchQuery: '',
-    books: []
+    books: [],
+    searchQuery: ''
   }
 
-  componentDidMount() {
-    BooksAPI.getAll()
+  searchBook = (query) => (
+    BooksAPI.search(query)
       .then((books) => {
         this.setState(() => ({
-          books
+          books: books
         }))
       })
-  }
-
-  handleChange = (searchQuery) => {
-    this.setState(() => ({
-      searchQuery: searchQuery.trim()
-    }))
-  }
+  )
 
   render() {
     const {searchQuery} = this.state;
@@ -30,23 +24,24 @@ class SearchBooks extends Component {
 
     const searchFilter = searchQuery === ''
       ? books
-      : books.filter((c) => (c.title.toLowerCase().includes(searchQuery.toLowerCase())))
+      : books.filter((c) => (c.title.toLowerCase().includes(this.searchBook.toLowerCase())))
 
     return (
       <div className="search-books">
         <div className="search-books-bar">
           <Link to={'/'} className="close-search">Close</Link>
           <div className="search-books-input-wrapper">
-            <input type="text" placeholder="Search by title or author" value={searchQuery} onChange={(event) => this.handleChange(event.target.value)}/>
+            <input type="text" placeholder="Search by title or author" onChange={(event) => this.searchBook(event.target.value)}/>
           </div>
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {searchFilter.map((book) => (
+            {console.log(searchFilter)}
+            {Array.isArray(books) > 0 && (searchFilter.map((book) => (
               <li key={book.id}>
-                <Book book={book}/>
+                <Book book={book} shelf={'none'}/>
               </li>
-            ))}
+            )))}
           </ol>
         </div>
       </div>

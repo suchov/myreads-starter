@@ -5,7 +5,6 @@ import * as BooksAPI from './BooksAPI';
 class Dropdown extends Component {
   static propTypes = {
     book: PropTypes.object.isRequired,
-    shelf: PropTypes.string.isRequired
   }
     handleChange = (selected) =>{
       BooksAPI.update(this.props.book, selected);

@@ -8,11 +8,11 @@ class Book extends Component {
     book: PropTypes.object.isRequired,
   }
   render(){
-    const {book} = this.props
+    const {book, shelf} = this.props
     const divStyle = {
       width: 128,
       height: 188,
-      backgroundImage: `url(${book.imageLinks.smallThumbnail})`
+      backgroundImage: `url(${book.imageLinks && book.imageLinks.thumbnail})`
     }
 
     return (
@@ -21,7 +21,7 @@ class Book extends Component {
           <div className="book-top">
             <div className="book-cover" style={divStyle}>
             </div>
-            <Dropdown book={this.props.book} shelf={this.props.book.shelf}/>
+            <Dropdown book={book} shelf={shelf}/>
           </div>
             <div className="book-title">{book.title}</div>
             <div className="book-authors">{book.authors && book.authors.join(', ')}</div>

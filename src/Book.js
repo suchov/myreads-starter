@@ -8,7 +8,7 @@ class Book extends Component {
     book: PropTypes.object.isRequired,
   }
   render(){
-    const {book, shelf} = this.props
+    const {book} = this.props
     const divStyle = {
       width: 128,
       height: 188,
